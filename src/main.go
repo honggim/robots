@@ -2,12 +2,12 @@ package main
 
 import (
 	"github.com/honggim/robots/src/menu"
-	"github.com/honggim/robots/src/model"
 	"github.com/honggim/robots/src/model/robot"
-	viewMap "github.com/honggim/robots/src/view/map"
+	"github.com/honggim/robots/src/model/world"
+	viewWorld "github.com/honggim/robots/src/view/world"
 )
 
-var world *model.Map
+var planet *world.Planet
 var bots []*robot.Robot
 
 func init() {
@@ -20,7 +20,7 @@ func init() {
 
 	// - map: size, features, i.e civ
 	//m = models.GenerateMap(menu.GetMapOptions())
-	world = model.NewMap(menu.GetMockMapOptions())
+	planet = world.NewPlanet(menu.GetMockMapOptions())
 
 	// - create core robots
 	bots := menu.GetMockRobots()
@@ -34,7 +34,7 @@ func main() {
 
 	// per user turn
 	// - render map
-	viewMap.Render(world)
+	viewWorld.Render(planet)
 	// - get resources
 	// - per robot
 	//   - move

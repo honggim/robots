@@ -1,4 +1,4 @@
-package model
+package world
 
 import (
 	"math/rand"
@@ -25,19 +25,19 @@ func randomTile(maxEnergon int) Tile {
 }
 
 //TODO: rename to "Planet"
-type Map struct {
+type Planet struct {
 	Name   string
 	Tiles  [][]Tile //TODO: chnage to pointers?
 }
 
-type MapOptions struct {
+type PlanetOptions struct {
 	Name    string
 	Length  int
 	Width   int
 	Energon int
 }
 
-func NewMap(opts *MapOptions) *Map {
+func NewPlanet(opts *PlanetOptions) *Planet {
 	//TODO: if length or width < 1
 
 	// needed to randomize rand.Intn()
@@ -52,16 +52,16 @@ func NewMap(opts *MapOptions) *Map {
 		}
 	}
 
-	return &Map{
+	return &Planet{
 		Name:   opts.Name,
 		Tiles:  tiles,
 	}
 }
 
-func (m *Map) Length() int {
-	return len(m.Tiles)
+func (p *Planet) Length() int {
+	return len(p.Tiles)
 }
 
-func (m *Map) Width() int {
-	return len(m.Tiles[0])
+func (p *Planet) Width() int {
+	return len(p.Tiles[0])
 }
