@@ -2,6 +2,7 @@ package models
 
 import (
 	"math/rand"
+	"time"
 )
 
 type Tile struct {
@@ -25,25 +26,41 @@ func randomTile(maxEnergon int) Tile {
 
 type Map struct {
 	Name   string
-	Length int
-	Width  int
 	Tiles  [][]Tile
 }
 
-func GenerateMap(name string, length, width, maxEnergon int) *Map {
-	tiles := make([][]Tile, length)
+type MapOptions struct {
+	Name    string
+	Length  int
+	Width   int
+	Energon int
+}
 
-	for l := 0; l < length; l++ {
-		tiles[l] = make([]Tile, width)
-		for w := 0; w < width; w++ {
-			tiles[l][w] = randomTile(maxEnergon)
+func NewMap(opts *MapOptions) *Map {
+	//TODO: if length or width < 1
+
+	// needed to randomize rand.Intn()
+	rand.Seed(time.Now().UnixNano())
+
+	tiles := make([][]Tile, opts.Length)
+
+	for l := 0; l < opts.Length; l++ {
+		tiles[l] = make([]Tile, opts.Width)
+		for w := 0; w < opts.Width; w++ {
+			tiles[l][w] = randomTile(opts.Energon)
 		}
 	}
 
 	return &Map{
-		Name:   name,
-		Length: length,
-		Width:  width,
+		Name:   opts.Name,
 		Tiles:  tiles,
 	}
+}
+
+func (m *Map) Length() int {
+	return len(m.Tiles)
+}
+
+func (m *Map) Width() int {
+	return len(m.Tiles[0])
 }

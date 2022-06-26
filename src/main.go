@@ -1,11 +1,9 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/honggim/robots/src/menu"
 	"github.com/honggim/robots/src/models"
-	"github.com/honggim/robots/src/views"
+	"github.com/honggim/robots/src/views/maps"
 )
 
 var m *models.Map
@@ -20,7 +18,7 @@ func init() {
 
 	// - map: size, features, i.e civ
 	//m = models.GenerateMap(menu.GetMapOptions())
-	m = models.GenerateMap(menu.GetMockMapOptions())
+	m = models.NewMap(menu.GetMockMapOptions())
 
 	// - pick core robots
 }
@@ -30,7 +28,7 @@ func main() {
 
 	// per user turn
 	// - render map
-	views.Render(m)
+	maps.Render(m)
 	// - get resources
 	// - per robot
 	//   - move

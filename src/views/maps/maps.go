@@ -1,4 +1,4 @@
-package views
+package maps
 
 import (
 	"fmt"
@@ -7,15 +7,11 @@ import (
 )
 
 func Render(m *models.Map) {
-	//fmt.Println(m)
 	fmt.Println(m.Name)
-	fmt.Println("- length: ", m.Length)
-	fmt.Println("-  width: ", m.Width)
+	fmt.Println("- length: ", m.Length())
+	fmt.Println("-  width: ", m.Width())
 
-	//line := fmt.Sprintf("name: %s [%d x %d] (l x w)", m.Name, m.Length, m.Width)
-	//fmt.Println(line)
-
-	for i := 0; i < m.Length; i++ {
+	for i := 0; i < m.Length(); i++ {
 		fmt.Println(renderRow(m.Tiles[i]))
 	}
 }
