@@ -3,14 +3,30 @@ package main
 import (
 	"fmt"
 
+	"github.com/honggim/robots/src/inputs"
 	"github.com/honggim/robots/src/maps"
 )
 
 func main() {
-	fmt.Println("main(): start")
-	defer fmt.Println("main(): end")
+	// create & login user
 
-	//maps.Generate(4,5)
-	hash := maps.Generate("first map", 3, 6)
-	fmt.Println(hash)
+	// get game options
+	// - map: size, features, i.e civ
+	m := maps.Generate(inputs.GetInputs())
+	fmt.Println(m)
+	// - pick core robots
+
+
+	// per user turn
+	// - see tiles
+	// - get resources
+	// - per robot
+	//   - move
+	//   - ability
+	//   - combat
+
+
+	// base(s) actions
+
+	// end turn
 }
