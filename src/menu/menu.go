@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/honggim/robots/src/model"
+	"github.com/honggim/robots/src/model/robot"
 )
 
 type Menu struct {
@@ -78,4 +79,21 @@ func (m *Menu) GetMockMapOptions() *model.MapOptions {
 		Width:   4,
 		Energon: 100,
 	}
+}
+
+/*
+func (m *Menu) GetRobots() *model.Robot {
+	for i := 0; i < 3; i++ { //TODO: # of bots as game option
+	}
+}
+*/
+
+func (m *Menu) GetMockRobots() []*robot.Robot {
+	bots := make([]*robot.Robot, 3)
+
+	bots[0] = robot.NewRobot("optimus prime")
+	bots[1] = robot.NewRobot("bumble bee")
+	bots[2] = robot.NewRobot("ironhide")
+
+	return bots
 }
