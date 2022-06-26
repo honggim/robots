@@ -27,7 +27,7 @@ func (m *Menu) Login() {
 	fmt.Println(msg)
 }
 
-func (m *Menu) GetMapOptions() (name string, length, width int) {
+func (m *Menu) GetMapOptions() (name string, length, width, maxEnergon int) {
 	fmt.Print("name of game? ")
 	name = m.readString()
 
@@ -36,6 +36,9 @@ func (m *Menu) GetMapOptions() (name string, length, width int) {
 
 	fmt.Print("width of map? ")
 	width = m.readInt()
+
+	//fmt.Print("max energon? ")
+	maxEnergon = 100
 
 	return
 }
@@ -61,6 +64,6 @@ func check(err error) {
 	}
 }
 
-func GetMockMapOptions() (string, int, int) {
-	return "mock name", 3, 6
+func (m *Menu) GetMockMapOptions() (string, int, int, int) {
+	return "mock name", 3, 4, 100
 }

@@ -13,8 +13,8 @@ type Tile struct {
 
 //TODO: use enum/iota
 
-func randomTile() Tile {
-	energon := rand.Intn(10)
+func randomTile(maxEnergon int) Tile {
+	energon := rand.Intn(maxEnergon)
 	tile := Tile{
 		Current: energon,
 		Total:   energon,
@@ -30,13 +30,13 @@ type Map struct {
 	Tiles  [][]Tile
 }
 
-func GenerateMap(name string, length, width int) *Map {
+func GenerateMap(name string, length, width, maxEnergon int) *Map {
 	tiles := make([][]Tile, length)
 
 	for l := 0; l < length; l++ {
 		tiles[l] = make([]Tile, width)
 		for w := 0; w < width; w++ {
-			tiles[l][w] = randomTile()
+			tiles[l][w] = randomTile(maxEnergon)
 		}
 	}
 
