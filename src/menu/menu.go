@@ -6,7 +6,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/honggim/robots/src/models"
+	"github.com/honggim/robots/src/model"
+	"github.com/honggim/robots/src/model/robot"
 )
 
 type Menu struct {
@@ -29,7 +30,7 @@ func (m *Menu) Login() {
 	fmt.Println(msg)
 }
 
-func (m *Menu) GetMapOptions() *models.MapOptions {
+func (m *Menu) GetMapOptions() *model.MapOptions {
 	fmt.Print("name of game? ")
 	name := m.readString()
 
@@ -42,7 +43,7 @@ func (m *Menu) GetMapOptions() *models.MapOptions {
 	fmt.Print("max energon? ")
 	energon := 100
 
-	return &models.MapOptions{
+	return &model.MapOptions{
 		Name:    name,
 		Length:  length,
 		Width:   width,
@@ -71,11 +72,28 @@ func check(err error) {
 	}
 }
 
-func (m *Menu) GetMockMapOptions() *models.MapOptions {
-	return &models.MapOptions{
+func (m *Menu) GetMockMapOptions() *model.MapOptions {
+	return &model.MapOptions{
 		Name:    "mock name",
 		Length:  3,
 		Width:   4,
 		Energon: 100,
 	}
+}
+
+/*
+func (m *Menu) GetRobots() *model.Robot {
+	for i := 0; i < 3; i++ { //TODO: # of bots as game option
+	}
+}
+*/
+
+func (m *Menu) GetMockRobots() []*robot.Robot {
+	bots := make([]*robot.Robot, 3)
+
+	bots[0] = robot.NewRobot("optimus prime")
+	bots[1] = robot.NewRobot("bumble bee")
+	bots[2] = robot.NewRobot("ironhide")
+
+	return bots
 }

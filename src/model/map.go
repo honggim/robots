@@ -1,4 +1,4 @@
-package models
+package model
 
 import (
 	"math/rand"
@@ -24,9 +24,10 @@ func randomTile(maxEnergon int) Tile {
 	return tile
 }
 
+//TODO: rename to "Planet"
 type Map struct {
 	Name   string
-	Tiles  [][]Tile
+	Tiles  [][]Tile //TODO: chnage to pointers?
 }
 
 type MapOptions struct {
