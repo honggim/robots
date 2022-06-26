@@ -1,12 +1,12 @@
-package maps
+package world
 
 import (
 	"fmt"
 
-	"github.com/honggim/robots/src/model"
+	"github.com/honggim/robots/src/model/world"
 )
 
-func Render(m *model.Map) {
+func Render(m *world.Planet) {
 	fmt.Println(m.Name)
 	fmt.Println("- length: ", m.Length())
 	fmt.Println("-  width: ", m.Width())
@@ -16,7 +16,7 @@ func Render(m *model.Map) {
 	}
 }
 
-func renderRow(row []model.Tile) string {
+func renderRow(row []world.Tile) string {
 	output := ""
 	for i := 0; i < len(row); i++ {
 		output += renderTile(row[i])
@@ -25,6 +25,6 @@ func renderRow(row []model.Tile) string {
 	return output
 }
 
-func renderTile(t model.Tile) string {
+func renderTile(t world.Tile) string {
 	return fmt.Sprintf("[%3d/%3d]", t.Current, t.Total)
 }

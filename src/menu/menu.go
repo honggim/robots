@@ -6,8 +6,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/honggim/robots/src/model"
 	"github.com/honggim/robots/src/model/robot"
+	"github.com/honggim/robots/src/model/world"
 )
 
 type Menu struct {
@@ -30,7 +30,7 @@ func (m *Menu) Login() {
 	fmt.Println(msg)
 }
 
-func (m *Menu) GetMapOptions() *model.MapOptions {
+func (m *Menu) GetMapOptions() *world.PlanetOptions {
 	fmt.Print("name of game? ")
 	name := m.readString()
 
@@ -43,7 +43,7 @@ func (m *Menu) GetMapOptions() *model.MapOptions {
 	fmt.Print("max energon? ")
 	energon := 100
 
-	return &model.MapOptions{
+	return &world.PlanetOptions{
 		Name:    name,
 		Length:  length,
 		Width:   width,
@@ -72,21 +72,14 @@ func check(err error) {
 	}
 }
 
-func (m *Menu) GetMockMapOptions() *model.MapOptions {
-	return &model.MapOptions{
+func (m *Menu) GetMockMapOptions() *world.PlanetOptions {
+	return &world.PlanetOptions{
 		Name:    "mock name",
 		Length:  3,
 		Width:   4,
 		Energon: 100,
 	}
 }
-
-/*
-func (m *Menu) GetRobots() *model.Robot {
-	for i := 0; i < 3; i++ { //TODO: # of bots as game option
-	}
-}
-*/
 
 func (m *Menu) GetMockRobots() []*robot.Robot {
 	bots := make([]*robot.Robot, 3)
