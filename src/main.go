@@ -3,20 +3,30 @@ package main
 import (
 	"fmt"
 
-	"github.com/honggim/robots/src/inputs"
-	"github.com/honggim/robots/src/maps"
+	//"github.com/honggim/robots/src/config/inputs"
+	"github.com/honggim/robots/src/menu"
+	"github.com/honggim/robots/src/models"
 )
 
-func main() {
-	// create & login user
+var m models.Map
 
-	// get game options
+func init() {
+	menu := menu.NewMenu()
+
+	// login screen
+	menu.Login()
+
+	//TODO: menu for new game, save, load
+
 	// - map: size, features, i.e civ
-	m := maps.Generate(inputs.GetInputs())
+	m := models.GenerateMap(menu.GetMapOptions())
 	fmt.Println(m)
+
 	// - pick core robots
+}
 
-
+func main() {
+	//TODO: move into controller
 	// per user turn
 	// - see tiles
 	// - get resources
@@ -28,5 +38,6 @@ func main() {
 
 	// base(s) actions
 
-	// end turn
+	// end turn?
+	//TODO:fmt.Scanln()
 }
