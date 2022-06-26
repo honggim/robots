@@ -8,6 +8,18 @@ type Robot struct {
 	name     string
 	states   []*State
 	curState int
+
+	/*
+		// def
+		// def rating
+		// atk rating
+		// equipment
+		// - artifacts
+
+		// protoform: body / hardware
+		// :          mind / "software"
+		// spark:     soul / ??
+	*/
 }
 
 func NewRobot(name string) *Robot {
@@ -59,23 +71,3 @@ func (r *Robot) States() {
 func (r *Robot) Transform() {
 }
 */
-
-type State struct {
-	name   string // name of state
-	intel  int    // how many abilities
-	str    int    // melee, transport
-	reflex int    // ranged
-	speed  int    // how many squares per turn
-	comm   int    // how far from HQ
-}
-
-func defaultRobotState() *State {
-	return &State{
-		name:  "robot",
-		intel:  3,
-		str:    3,
-		reflex: 3,
-		speed:  1,
-		comm:   5,
-	}
-}
