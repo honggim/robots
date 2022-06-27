@@ -6,17 +6,26 @@ import (
 	"github.com/honggim/robots/src/model/world"
 )
 
-func Render(m *world.Planet) {
-	fmt.Println(m.Name)
-	fmt.Println("- length: ", m.Length())
-	fmt.Println("-  width: ", m.Width())
+func Render(p *world.Planet) {
+	fmt.Println(p.Name)
+	fmt.Println("- length: ", p.Length())
+	fmt.Println("-  width: ", p.Width())
 
-	for i := 0; i < m.Length(); i++ {
-		fmt.Println(renderRow(m.Tiles[i]))
-	}
+	fmt.Println(renderTiles(p.Tiles))
 }
 
-func renderRow(row []world.Tile) string {
+func renderTiles(tiles [][]*world.Tile) string {
+	output := ""
+
+	for i := 0; i < len(tiles); i++ {
+		output += renderRow(tiles[i])
+		output += "\n"
+	}
+
+	return output
+}
+
+func renderRow(row []*world.Tile) string {
 	output := ""
 	for i := 0; i < len(row); i++ {
 		output += renderTile(row[i])
@@ -25,6 +34,6 @@ func renderRow(row []world.Tile) string {
 	return output
 }
 
-func renderTile(t world.Tile) string {
+func renderTile(t *world.Tile) string {
 	return fmt.Sprintf("[%3d/%3d]", t.Current, t.Total)
 }
