@@ -33,11 +33,12 @@ func (m *Menu) Login() {
 }
 
 func (m *Menu) File() error {
+
 	return nil
 }
 
-//func (m *Menu) Save(filename string, data interface{}) error {
-func (m *Menu) Save(filename string, data any) error {
+//TODO:func (m *Menu) Save(filename string, data any) error {
+func (m *Menu) Save(filename string, data interface{}) error {
 	raw, err := json.MarshalIndent(data, "", "  ")
 	if err != nil {
 		return err
