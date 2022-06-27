@@ -2,6 +2,7 @@ package menu
 
 import (
 	"bufio"
+	//"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -28,6 +29,18 @@ func (m *Menu) Login() {
 	name := m.readString()
 	msg := fmt.Sprintf("Welcome %s!", name)
 	fmt.Println(msg)
+}
+
+func (m *Menu) File() error {
+	return nil
+}
+
+func (m *Menu) Save() error {
+	return nil
+}
+
+func (m *Menu) Load() error {
+	return nil
 }
 
 func (m *Menu) GetMapOptions() *world.PlanetOptions {

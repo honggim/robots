@@ -16,7 +16,8 @@ func init() {
 	// login screen
 	//menu.Login()
 
-	//TODO: menu for new game, save, load
+	// new / save / load game
+	menu.File()
 
 	// - map: size, features, i.e civ
 	//m = models.GenerateMap(menu.GetMapOptions())
