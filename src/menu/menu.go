@@ -2,8 +2,9 @@ package menu
 
 import (
 	"bufio"
-	//"errors"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strconv"
 
@@ -35,8 +36,14 @@ func (m *Menu) File() error {
 	return nil
 }
 
-func (m *Menu) Save() error {
-	return nil
+//func (m *Menu) Save(filename string, data interface{}) error {
+func (m *Menu) Save(filename string, data any) error {
+	raw, err := json.MarshalIndent(data, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	return ioutil.WriteFile(filename, raw, 0644)
 }
 
 func (m *Menu) Load() error {

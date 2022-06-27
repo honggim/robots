@@ -7,24 +7,24 @@ import (
 	viewWorld "github.com/honggim/robots/src/view/world"
 )
 
+var m *menu.Menu
 var planet *world.Planet
 var bots []*robot.Robot
 
 func init() {
-	menu := menu.NewMenu()
+	m = menu.NewMenu()
 
 	// login screen
 	//menu.Login()
 
 	// new / save / load game
-	menu.File()
+	//m.File()
 
 	// - map: size, features, i.e civ
-	//m = models.GenerateMap(menu.GetMapOptions())
-	planet = world.NewPlanet(menu.GetMockMapOptions())
+	planet = world.NewPlanet(m.GetMockMapOptions())
 
 	// - create core robots
-	bots := menu.GetMockRobots()
+	bots := m.GetMockRobots()
 	for i := 0; i < len(bots); i++ {
 		bots[i].Render()
 	}
@@ -47,4 +47,5 @@ func main() {
 
 	// end turn?
 	//TODO:fmt.Scanln()
+	m.Save("savefile.txt", planet)
 }
