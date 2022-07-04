@@ -5,7 +5,7 @@ import (
 
 	"github.com/honggim/robots/src/menu"
 	//"github.com/honggim/robots/src/model/robot"
-	//"github.com/honggim/robots/src/model/world"
+	"github.com/honggim/robots/src/model/world"
 	viewWorld "github.com/honggim/robots/src/view/world"
 )
 
@@ -22,7 +22,8 @@ func main() {
 
 	// -> load game
 	var filename string = "savefile.txt"
-	planet := m.Load(filename)
+	var planet world.Planet
+	m.Load(filename, &planet)
 
 	// - create core robots
 	/*
@@ -37,7 +38,7 @@ func main() {
 
 	// per user turn
 	// - render map
-	viewWorld.Render(planet)
+	viewWorld.Render(&planet)
 	// - get resources
 	// - per robot
 	//   - move
