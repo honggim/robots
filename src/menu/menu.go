@@ -39,16 +39,29 @@ func (m *Menu) File() error {
 
 //TODO:func (m *Menu) Save(filename string, data any) error {
 func (m *Menu) Save(filename string, data interface{}) error {
-	raw, err := json.MarshalIndent(data, "", "  ")
+	//raw, err := json.MarshalIndent(data, "", "  ")
+	raw, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
 
+	//TODO: saves entire to memory to file; need to address if too big for memory
 	return ioutil.WriteFile(filename, raw, 0644)
 }
 
-func (m *Menu) Load() error {
-	return nil
+func (m *Menu) Load(filename string) (interface{}, error) {
+	raw, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	var data interface{}
+	err = json.Unmarshal(raw, &data)
+	if err != nil {
+		return nil, err
+	}
+
+	return data, nil
 }
 
 func (m *Menu) GetMapOptions() *world.PlanetOptions {
