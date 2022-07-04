@@ -49,19 +49,15 @@ func (m *Menu) Save(filename string, data interface{}) error {
 	return ioutil.WriteFile(filename, raw, 0644)
 }
 
-func (m *Menu) Load(filename string) (interface{}, error) {
+func (m *Menu) Load(filename string) *world.Planet {
 	raw, err := ioutil.ReadFile(filename)
-	if err != nil {
-		return nil, err
-	}
+	check(err)
 
-	var data interface{}
-	err = json.Unmarshal(raw, &data)
-	if err != nil {
-		return nil, err
-	}
+	var planet *world.Planet = &world.Planet{}
+	err = json.Unmarshal(raw, planet)
+	check(err)
 
-	return data, nil
+	return planet
 }
 
 func (m *Menu) GetMapOptions() *world.PlanetOptions {
