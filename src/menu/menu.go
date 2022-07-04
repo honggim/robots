@@ -2,8 +2,9 @@ package menu
 
 import (
 	"bufio"
-	//"errors"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strconv"
 
@@ -32,15 +33,28 @@ func (m *Menu) Login() {
 }
 
 func (m *Menu) File() error {
+
 	return nil
 }
 
-func (m *Menu) Save() error {
-	return nil
+//TODO:func (m *Menu) Save(filename string, data any) error {
+func (m *Menu) Save(filename string, data interface{}) error {
+	//TODO: raw, err := json.MarshalIndent(data, "", "  ")
+	raw, err := json.Marshal(data)
+	if err != nil {
+		return err
+	}
+
+	//TODO: saves entire to memory to file; need to address if too big for memory
+	return ioutil.WriteFile(filename, raw, 0644)
 }
 
-func (m *Menu) Load() error {
-	return nil
+func (m *Menu) Load(filename string, data interface{}) {
+	raw, err := ioutil.ReadFile(filename)
+	check(err)
+
+	err = json.Unmarshal(raw, &data)
+	check(err)
 }
 
 func (m *Menu) GetMapOptions() *world.PlanetOptions {

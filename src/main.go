@@ -1,37 +1,38 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/honggim/robots/src/menu"
-	"github.com/honggim/robots/src/model/robot"
+	//"github.com/honggim/robots/src/model/robot"
 	"github.com/honggim/robots/src/model/world"
 	viewWorld "github.com/honggim/robots/src/view/world"
 )
 
-var planet *world.Planet
-var bots []*robot.Robot
-
-func init() {
-	menu := menu.NewMenu()
+func main() {
+	m := menu.NewMenu()
 
 	// login screen
-	//menu.Login()
+	//m.Login()
 
 	// new / save / load game
-	menu.File()
-
+	// -> new game
 	// - map: size, features, i.e civ
-	//m = models.GenerateMap(menu.GetMapOptions())
-	planet = world.NewPlanet(menu.GetMockMapOptions())
+	//planet = world.NewPlanet(m.GetMockMapOptions())
+
+	// -> load game
+	var filename string = "savefile.txt"
+	var planet *world.Planet = &world.Planet{}
+	m.Load(filename, planet)
 
 	// - create core robots
-	bots := menu.GetMockRobots()
+	/*
+	var bots []*robot.Robot
+	bots := m.GetMockRobots()
 	for i := 0; i < len(bots); i++ {
 		bots[i].Render()
 	}
-}
-
-func main() {
-	//TODO: move into controller
+	*/
 
 	// per user turn
 	// - render map
@@ -46,5 +47,8 @@ func main() {
 	// base(s) actions
 
 	// end turn?
-	//TODO:fmt.Scanln()
+
+	// -> save game
+	//m.Save(filename, planet)
+	fmt.Scanln()
 }
