@@ -22,8 +22,8 @@ func main() {
 
 	// -> load game
 	var filename string = "savefile.txt"
-	var planet world.Planet
-	m.Load(filename, &planet)
+	var planet *world.Planet = &world.Planet{}
+	m.Load(filename, planet)
 
 	// - create core robots
 	/*
@@ -34,11 +34,9 @@ func main() {
 	}
 	*/
 
-	//TODO: move into controller
-
 	// per user turn
 	// - render map
-	viewWorld.Render(&planet)
+	viewWorld.Render(planet)
 	// - get resources
 	// - per robot
 	//   - move

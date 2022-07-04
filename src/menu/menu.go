@@ -39,7 +39,7 @@ func (m *Menu) File() error {
 
 //TODO:func (m *Menu) Save(filename string, data any) error {
 func (m *Menu) Save(filename string, data interface{}) error {
-	//raw, err := json.MarshalIndent(data, "", "  ")
+	//TODO: raw, err := json.MarshalIndent(data, "", "  ")
 	raw, err := json.Marshal(data)
 	if err != nil {
 		return err
